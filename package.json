@@ -1,8 +1,8 @@
 {
-  "name": "typescript-action",
+  "name": "action-jdk-build",
   "version": "0.0.0",
   "private": true,
-  "description": "TypeScript template action",
+  "description": "JDK build action",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -11,11 +11,11 @@
     "lint": "eslint src/**/*.ts",
     "package": "ncc build --source-map --license licenses.txt",
     "test": "jest",
-    "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
+    "all": "npm run build && npm run format && npm run lint && npm run package"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/rbkmoney/action-jdk-build.git"
   },
   "keywords": [
     "actions",
@@ -23,7 +23,6 @@
     "setup"
   ],
   "author": "",
-  "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.6.0"
   },
@@ -34,6 +33,7 @@
     "eslint": "^7.32.0",
     "eslint-plugin-github": "^4.3.2",
     "eslint-plugin-jest": "^25.0.5",
+    "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.2.5",
     "js-yaml": "^4.1.0",
     "prettier": "2.4.1",
