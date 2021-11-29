@@ -43,4 +43,4 @@ runs:
     - shell: bash
       run: mvn -B clean compile package -Ddockerfile.registry=${DOCKER_HUB_REGISTRY} ${{ inputs.mvn-args }}
       env:
-        GITHUB\_TOKEN: ${{ inputs.github-token }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
