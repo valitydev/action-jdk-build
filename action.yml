@@ -25,15 +25,6 @@ runs:
         java-version: ${{ inputs.jdk-version }}
         distribution: ${{ inputs.jdk-distribution }}
 
-    - name: Cache local Maven repository
-      id: mvn-cache
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-
     - shell: bash
       run: |
         echo "REPOSITORY_OWNER=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
@@ -43,4 +34,4 @@ runs:
     - shell: bash
       run: mvn -B clean compile package -Ddockerfile.registry=${DOCKER_HUB_REGISTRY} ${{ inputs.mvn-args }}
       env:
-        GITHUB_TOKEN: ${{ inputs.github-token }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
