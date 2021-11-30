@@ -33,7 +33,7 @@ runs:
       with:
         servers: |
             [{
-                "id": "empayre-github",
+                "id": "github",
                 "username": "${{ inputs.user }}",
                 "password": "${{ inputs.pat }}"
             }]
