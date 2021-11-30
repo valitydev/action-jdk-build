@@ -12,8 +12,8 @@ inputs:
   mvn-args:
     description: 'Additional maven arguments'
     required: false
-  github-token:
-    description: 'GITHUB_TOKEN'
+  pat:
+    description: 'pat'
     required: true
 
 runs:
@@ -34,4 +34,5 @@ runs:
     - shell: bash
       run: mvn -B clean compile package -Ddockerfile.registry=${DOCKER_HUB_REGISTRY} ${{ inputs.mvn-args }}
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PASSWORD: ${{ inputs.pat }}
+
