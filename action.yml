@@ -28,14 +28,15 @@ runs:
         java-version: ${{ inputs.jdk-version }}
         distribution: ${{ inputs.jdk-distribution }}
 
-    - name: Cache local Maven repository
-      id: mvn-cache
-      uses: actions/cache@v2
+    - name: Set up Maven Settings for deploy
+      uses: s4u/maven-settings-action@v2.2.0
       with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
+        servers: |
+            [{
+                "id": "github",
+                "username": "${{ inputs.user }}",
+                "password": "${{ inputs.pat }}"
+            }]
 
     - shell: bash
       run: |
