@@ -28,6 +28,16 @@ runs:
         java-version: ${{ inputs.jdk-version }}
         distribution: ${{ inputs.jdk-distribution }}
 
+    - name: Set up Maven Settings for deploy
+      uses: s4u/maven-settings-action@v2.2.0
+      with:
+        servers: |
+            [{
+                "id": "github",
+                "username": "${{ inputs.user }}",
+                "password": "${{ inputs.pat }}"
+            }]
+
     - shell: bash
       run: |
         echo "REPOSITORY_OWNER=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
