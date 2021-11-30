@@ -45,7 +45,7 @@ runs:
         echo "DOCKER_HUB_REGISTRY=registry.hub.docker.com" >> $GITHUB_ENV
 
     - shell: bash
-      run: mvn -B clean compile package -Ddockerfile.registry=${DOCKER_HUB_REGISTRY} ${{ inputs.mvn-args }}
+      run: mvn -B clean compile package -Ddockerfile.registry=${DOCKER_HUB_REGISTRY} ${{ inputs.mvn-args }} -Dtoken=${GITHUB_TOKEN}
       env:
         PASSWORD: ${{ inputs.pat }}
         USENAME: ${{ inputs.user }}
