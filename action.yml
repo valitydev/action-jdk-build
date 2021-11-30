@@ -35,4 +35,5 @@ runs:
       run: mvn -B clean compile package -Ddockerfile.registry=${DOCKER_HUB_REGISTRY} ${{ inputs.mvn-args }}
       env:
         PASSWORD: ${{ inputs.pat }}
+        USENAME: ${{ github.actor }}
 
