@@ -15,6 +15,9 @@ inputs:
   pat:
     description: 'pat'
     required: true
+  user:
+    description: 'user'
+    required: true
 
 runs:
   using: composite
@@ -35,5 +38,5 @@ runs:
       run: mvn -B clean compile package -Ddockerfile.registry=${DOCKER_HUB_REGISTRY} ${{ inputs.mvn-args }}
       env:
         PASSWORD: ${{ inputs.pat }}
-        USENAME: ${{ github.actor }}
+        USENAME: ${{ inputs.user }}
 
