@@ -36,6 +36,16 @@ runs:
         java-version: ${{ inputs.jdk-version }}
         distribution: ${{ inputs.jdk-distribution }}
 
+    - name: Set up Maven Settings for deploy
+      uses: s4u/maven-settings-action@v2.2.0
+      with:
+        servers: |
+          [{
+              "id": "github",
+              "username": "${{ inputs.github-user }}",
+              "password": "${{ inputs.github-pat }}"
+          }]
+
     - name: Cache local Maven repository
       id: mvn-cache
       uses: actions/cache@v2
@@ -52,10 +62,6 @@ runs:
 
     - shell: bash
       run: |
-        mvn -s $GITHUB_WORKSPACE/templates/maven-settings.xml -B clean compile package \
-        -Ddockerfile.registry=${{ inputs.docker-registry }} -Ddockerfile.base.service.tag=${{ inputs.jdk-base-image-tag }} \
-        ${{ inputs.mvn-args }}
-      env:
-        USER_NAME: ${{ inputs.github-user }}
-        ACCESS_TOKEN: ${{ inputs.github-pat }}
+        mvn -B clean compile package -Ddockerfile.registry=${{ inputs.docker-registry }} \
+        -Ddockerfile.base.service.tag=${{ inputs.jdk-base-image-tag }} ${{ inputs.mvn-args }}
 
