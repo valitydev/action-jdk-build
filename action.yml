@@ -9,9 +9,23 @@ inputs:
     description: 'The jdk distribution to use'
     default: 'adopt'
     required: false
+  jdk-base-image-tag:
+    description: 'Base docker image tag'
+    default: '7e0c98bb'
+    required: false
+  docker-registry:
+    description: 'Docker registry'
+    default: 'registry.hub.docker.com'
+    required: false
   mvn-args:
     description: 'Additional maven arguments'
     required: false
+  github-pat:
+    description: 'pat'
+    required: true
+  github-user:
+    description: 'user'
+    required: true
 
 runs:
   using: composite
@@ -21,6 +35,16 @@ runs:
       with:
         java-version: ${{ inputs.jdk-version }}
         distribution: ${{ inputs.jdk-distribution }}
+
+    - name: Set up Maven Settings for deploy
+      uses: s4u/maven-settings-action@v2.2.0
+      with:
+        servers: |
+          [{
+              "id": "github",
+              "username": "${{ inputs.github-user }}",
+              "password": "${{ inputs.github-pat }}"
+          }]
 
     - name: Cache local Maven repository
       id: mvn-cache
@@ -35,7 +59,9 @@ runs:
       run: |
         echo "REPOSITORY_OWNER=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
         echo "REPOSITORY_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
-        echo "DOCKER_HUB_REGISTRY=registry.hub.docker.com" >> $GITHUB_ENV
 
     - shell: bash
-      run: mvn -B clean compile package -Ddockerfile.registry=${DOCKER_HUB_REGISTRY} ${{ inputs.mvn-args }}
+      run: |
+        mvn -B clean compile package -Ddockerfile.registry=${{ inputs.docker-registry }} \
+        -Ddockerfile.base.service.tag=${{ inputs.jdk-base-image-tag }} ${{ inputs.mvn-args }}
+
