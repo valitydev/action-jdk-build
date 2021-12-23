@@ -22,7 +22,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - name: Build
-            uses: alfaind/action-jdk-build@v1
+            uses: valitydev/action-jdk-build@v1
             with:
               mvn-args: '-DjvmArgs="-Xmx256m"'
 ```
