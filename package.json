@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alfaind/action-jdk-build.git"
+    "url": "git+https://github.com/valitydev/action-jdk-build.git"
   },
   "keywords": [
     "actions",
