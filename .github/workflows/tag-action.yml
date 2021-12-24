@@ -16,7 +16,6 @@ jobs:
         with:
           repository: valitydev/action-tagger
           ref: v1
-          token: '${{ secrets.ACTIONS_FETCH_TOKEN }}'
           path: .github/actions/action-tagger
 
       - uses: ./.github/actions/action-tagger
