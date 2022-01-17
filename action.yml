@@ -20,12 +20,6 @@ inputs:
   mvn-args:
     description: 'Additional maven arguments'
     required: false
-  github-pat:
-    description: 'pat'
-    required: true
-  github-user:
-    description: 'user'
-    required: true
 
 runs:
   using: composite
@@ -35,16 +29,6 @@ runs:
       with:
         java-version: ${{ inputs.jdk-version }}
         distribution: ${{ inputs.jdk-distribution }}
-
-    - name: Set up Maven Settings for deploy
-      uses: s4u/maven-settings-action@v2.2.0
-      with:
-        servers: |
-          [{
-              "id": "github",
-              "username": "${{ inputs.github-user }}",
-              "password": "${{ inputs.github-pat }}"
-          }]
 
     - name: Cache local Maven repository
       id: mvn-cache
