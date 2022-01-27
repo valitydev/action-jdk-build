@@ -4,12 +4,13 @@ This action cache maven dependencies, add custom env variables and build maven p
 
 ## Input
 
-| Name               | Description                                                                                    |
-| ------------------ | ---------------------------------------------------------------------------------------------- |
-| `jdk-version`      | The JDK version to set up.                                                                     |
-| `jdk-distribution` | JDK distributor.                                                                               |
-| `mvn-args`         | Additional maven arguments                                                                     |
-
+| Name                 | Description                |         Default         | Required |
+|:---------------------|----------------------------|:-----------------------:|:--------:|
+| `jdk-version`        | The JDK version to set up. |           15            |    ✗     |
+| `jdk-distribution`   | JDK distributor.           |          adopt          |    ✗     |
+| `jdk-base-image-tag` | Base docker image tag      |        7e0c98bb         |    ✗     |
+| `docker-registry`    | Docker registry            | registry.hub.docker.com |    ✗     |
+| `mvn-args`           | Additional maven arguments |                         |    ✗     |
 ## Example Workflow File
 
 ```yaml
