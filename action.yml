@@ -25,7 +25,7 @@ runs:
   using: composite
   steps:
     - name: set up JDK
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
         java-version: ${{ inputs.jdk-version }}
         distribution: ${{ inputs.jdk-distribution }}
@@ -48,4 +48,3 @@ runs:
       run: |
         mvn -B clean compile package -Ddockerfile.registry=${{ inputs.docker-registry }} \
         -Ddockerfile.base.service.tag=${{ inputs.jdk-base-image-tag }} ${{ inputs.mvn-args }}
-
