@@ -48,4 +48,3 @@ runs:
       run: |
         mvn -B clean compile package -Ddockerfile.registry=${{ inputs.docker-registry }} \
         -Ddockerfile.base.service.tag=${{ inputs.jdk-base-image-tag }} ${{ inputs.mvn-args }}
-
