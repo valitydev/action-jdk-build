@@ -6,8 +6,8 @@ This action cache maven dependencies, add custom env variables and build maven p
 
 | Name                 | Description                |         Default         | Required |
 |:---------------------|----------------------------|:-----------------------:|:--------:|
-| `jdk-version`        | The JDK version to set up. |           15            |    ✗     |
-| `jdk-distribution`   | JDK distributor.           |          adopt          |    ✗     |
+| `jdk-version`        | The JDK version to set up. |           17            |    ✗     |
+| `jdk-distribution`   | JDK distributor.           |         temurin         |    ✗     |
 | `jdk-base-image-tag` | Base docker image tag      |        7e0c98bb         |    ✗     |
 | `docker-registry`    | Docker registry            | registry.hub.docker.com |    ✗     |
 | `mvn-args`           | Additional maven arguments |                         |    ✗     |

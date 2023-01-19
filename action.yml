@@ -3,11 +3,11 @@ description: 'Build maven project'
 inputs:
   jdk-version:
     description: 'The jdk version to use'
-    default: '15'
+    default: '17'
     required: false
   jdk-distribution:
     description: 'The jdk distribution to use'
-    default: 'adopt'
+    default: 'temurin'
     required: false
   jdk-base-image-tag:
     description: 'Base docker image tag'
