@@ -46,5 +46,10 @@ runs:
 
     - shell: bash
       run: |
-        mvn -B clean compile package -Ddockerfile.registry=${{ inputs.docker-registry }} \
-        -Ddockerfile.base.service.tag=${{ inputs.jdk-base-image-tag }} ${{ inputs.mvn-args }}
+        mvn -B clean compile package site ${{ inputs.mvn-args }}
+
+    - name: Upload SBOM
+      uses: actions/upload-artifact@v3
+      with:
+        name: bom.json
+        path: 'target/bom.json'
