@@ -10,9 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Checkout GitHub Action Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: valitydev/action-tagger
           ref: v1
