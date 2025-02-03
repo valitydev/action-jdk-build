@@ -53,3 +53,4 @@ runs:
       with:
         name: bom.json
         path: 'target/bom.json'
+        overwrite: true
