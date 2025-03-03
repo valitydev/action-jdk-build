@@ -55,7 +55,6 @@ runs:
           echo "Using existing target/bom.json"
         else
           SBOM_FILE=$(find . -path "*/target/classes/META-INF/sbom/application.cdx.json" -type f -print -quit)
-      
         if [[ -n "$SBOM_FILE" ]]; then
           echo "target/bom.json not found. Using $SBOM_FILE instead."
           cp "$SBOM_FILE" target/bom.json
